@@ -10,6 +10,7 @@ import {
   FaPython,
   FaDatabase,
   FaChartLine,
+  FaChartBar,
   FaAward,
   FaGraduationCap,
   FaBriefcase,
@@ -20,9 +21,9 @@ import {
   SiPytorch, 
   SiScikitlearn, 
   SiTableau, 
-  SiPowerbi,
+
   SiGooglecloud,
-  SiAmazonaws,
+  SiAmazonwebservices,
   SiApachespark,
   SiR,
   SiLeetcode
@@ -421,7 +422,7 @@ const Skills = () => {
         { name: "PySpark", icon: SiApachespark, level: 88 },
         { name: "BigQuery", icon: FaDatabase, level: 85 },
         { name: "GCP", icon: SiGooglecloud, level: 87 },
-        { name: "AWS", icon: SiAmazonaws, level: 85 },
+        { name: "AWS", icon: SiAmazonwebservices, level: 85 },
         { name: "SQL", icon: FaDatabase, level: 90 },
         { name: "ETL", icon: FaDatabase, level: 88 },
       ]
@@ -431,7 +432,7 @@ const Skills = () => {
       color: "neon-blue",
       skills: [
         { name: "Tableau", icon: SiTableau, level: 88 },
-        { name: "PowerBI", icon: SiPowerbi, level: 85 },
+        { name: "PowerBI", icon: FaChartBar, level: 85 },
         { name: "Matplotlib", icon: FaChartLine, level: 90 },
         { name: "Seaborn", icon: FaChartLine, level: 87 },
       ]
