@@ -1,13 +1,13 @@
 {
   "files": {
-    "main.css": "/sanket-s-portfolio/static/css/main.ff576fa0.css",
-    "main.js": "/sanket-s-portfolio/static/js/main.10f73b54.js",
+    "main.css": "/sanket-s-portfolio/static/css/main.6080229a.css",
+    "main.js": "/sanket-s-portfolio/static/js/main.1861a8a3.js",
     "index.html": "/sanket-s-portfolio/index.html",
-    "main.ff576fa0.css.map": "/sanket-s-portfolio/static/css/main.ff576fa0.css.map",
-    "main.10f73b54.js.map": "/sanket-s-portfolio/static/js/main.10f73b54.js.map"
+    "main.6080229a.css.map": "/sanket-s-portfolio/static/css/main.6080229a.css.map",
+    "main.1861a8a3.js.map": "/sanket-s-portfolio/static/js/main.1861a8a3.js.map"
   },
   "entrypoints": [
-    "static/css/main.ff576fa0.css",
-    "static/js/main.10f73b54.js"
+    "static/css/main.6080229a.css",
+    "static/js/main.1861a8a3.js"
   ]
 }
