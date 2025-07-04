@@ -241,17 +241,22 @@ const Hero = () => {
           
           <motion.h2
             className="text-2xl md:text-4xl text-blue-400"
-            initial={{ opacity: 0, y: 20 }}
+            initial={{ opacity: 0 }}
             animate={{ 
-              opacity: 1, 
-              y: [20, -5, 0],
+              opacity: 1,
+              textShadow: [
+                "0 0 10px rgba(96, 165, 250, 0.5)",
+                "0 0 20px rgba(96, 165, 250, 0.8), 0 0 30px rgba(96, 165, 250, 0.6)",
+                "0 0 10px rgba(96, 165, 250, 0.5)"
+              ]
             }}
             transition={{ 
-              duration: 0.8, 
-              delay: 0.5,
-              y: {
-                duration: 0.6,
-                ease: "easeOut"
+              opacity: { duration: 0.8, delay: 0.5 },
+              textShadow: {
+                duration: 2,
+                delay: 1,
+                repeat: Infinity,
+                ease: "easeInOut"
               }
             }}
           >
