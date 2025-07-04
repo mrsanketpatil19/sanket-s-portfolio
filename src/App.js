@@ -240,7 +240,7 @@ const Hero = () => {
           </motion.h1>
           
           <motion.h2
-            className="text-2xl md:text-4xl text-blue-400 animate-pulse-glow"
+            className="text-2xl md:text-4xl text-neon-blue animate-pulse-glow"
             initial={{ opacity: 0 }}
             animate={{ opacity: 1 }}
             transition={{ duration: 0.8, delay: 0.5 }}
