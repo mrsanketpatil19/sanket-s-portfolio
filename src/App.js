@@ -65,7 +65,7 @@ const ContactInfoModal = ({ isOpen, onClose }) => {
         <div className="glass-card p-6 rounded-lg shadow-2xl min-w-[300px]">
           <div className="flex items-center mb-4">
             <img
-              src="/work_experience/WhatsApp Image 2025-07-03 at 21.44.35.jpeg"
+              src={`${process.env.PUBLIC_URL}/work_experience/WhatsApp Image 2025-07-03 at 21.44.35.jpeg`}
               alt="Sanket Patil"
               className="w-12 h-12 rounded-full mr-3 border-2 border-neon-red"
             />
@@ -163,7 +163,7 @@ const Navigation = () => {
               onClick={toggleContactModal}
             >
               <img
-                src="/work_experience/WhatsApp Image 2025-07-03 at 21.44.35.jpeg"
+                src={`${process.env.PUBLIC_URL}/work_experience/WhatsApp Image 2025-07-03 at 21.44.35.jpeg`}
                 alt="Sanket Patil"
                 className="w-10 h-10 rounded-full border-2 border-neon-red hover:border-neon-green transition-colors duration-300"
               />
@@ -224,7 +224,7 @@ const Hero = () => {
             className="mb-8"
           >
             <img
-              src="/work_experience/WhatsApp Image 2025-07-03 at 21.44.35.jpeg"
+              src={`${process.env.PUBLIC_URL}/work_experience/WhatsApp Image 2025-07-03 at 21.44.35.jpeg`}
               alt="Sanket Patil"
               className="w-48 h-48 md:w-64 md:h-64 rounded-full mx-auto object-cover shadow-2xl border-4 border-neon-red"
             />
@@ -604,7 +604,7 @@ const Experience = () => {
       duration: "Mar 2024 – Present",
       description: "Conducting research in machine learning and AI systems, focusing on natural language processing and deep learning applications.",
       color: "neon-blue",
-      image: "/work_experience/DePaul.jpeg",
+      image: `${process.env.PUBLIC_URL}/work_experience/DePaul.jpeg`,
       project: "Semantic Analysis of Scholarly Literature Using OpenAlex & SciBERT",
       details: [
         "Spearheaded the creation of a large-scale bibliographic research database using OpenAlex, ingesting metadata for 50M+ scholarly articles.",
@@ -623,7 +623,7 @@ const Experience = () => {
       duration: "Jan 2021 – Aug 2023",
       description: "Developed data analysis pipelines, created business intelligence dashboards, and provided actionable insights to drive business decisions.",
       color: "neon-green",
-      image: "/work_experience/MRO.jpg",
+      image: `${process.env.PUBLIC_URL}/work_experience/MRO.jpg`,
       project: "EHR Data Engineering for Clinical Registries & National Reporting",
       details: [
         "Led clinical data integration initiatives using Epic's Reporting Workbench (RPC) and ACEP's CEDR registry, extracting quality metrics and encounter data from EHRs like Caboodle.",
@@ -836,7 +836,7 @@ const Projects = () => {
         "Ensured security by sanitizing dynamic SQL inputs before execution"
       ],
       impact: "Enabled querying over 3,000+ embeddings and 15+ data sources with a unified natural language interface. Showcased potential for enterprise use cases like healthcare record QA, compliance document search, and multi-department business intelligence.",
-      image: "/work_experience/ChatGPT Image Jul 3, 2025, 09_58_12 PM.png",
+      image: `${process.env.PUBLIC_URL}/work_experience/ChatGPT Image Jul 3, 2025, 09_58_12 PM.png`,
       color: "neon-red",
       emoji: "🧠"
     },
@@ -868,7 +868,7 @@ const Projects = () => {
         "Used .env variables for secure API configuration and session timeout logic for better security"
       ],
       impact: "Enabled non-technical users (e.g., nurses, doctors) to interact with patient records via chat without writing code or queries. Reduced time to retrieve and compare patient information from minutes to seconds. Simulated a real-world use case for intelligent LLM-assisted EHR querying, paving the way for smarter, more accessible healthcare tools.",
-      image: "/work_experience/image.png",
+      image: `${process.env.PUBLIC_URL}/work_experience/image.png`,
       color: "neon-blue",
       emoji: "🏥"
     }
@@ -1018,14 +1018,14 @@ const Certifications = () => {
       issuer: "HackerRank",
       icon: FaPython,
       color: "neon-green",
-      image: "/certificates/hackerrank-python-sql.jpg"
+      image: `${process.env.PUBLIC_URL}/certificates/hackerrank-python-sql.jpg`
     },
     {
       title: "Data Analytics & ML",
       issuer: "Imarticus Learning",
       icon: FaChartLine,
       color: "neon-blue",
-      image: "/certificates/Imarticus Certificate.jpg"
+      image: `${process.env.PUBLIC_URL}/certificates/Imarticus Certificate.jpg`
     }
   ];
 
