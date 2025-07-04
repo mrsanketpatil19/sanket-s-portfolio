@@ -240,10 +240,20 @@ const Hero = () => {
           </motion.h1>
           
           <motion.h2
-            className="text-2xl md:text-4xl text-neon-blue glow-text"
-            initial={{ opacity: 0 }}
-            animate={{ opacity: 1 }}
-            transition={{ duration: 0.8, delay: 0.5 }}
+            className="text-2xl md:text-4xl text-blue-400"
+            initial={{ opacity: 0, y: 20 }}
+            animate={{ 
+              opacity: 1, 
+              y: [20, -5, 0],
+            }}
+            transition={{ 
+              duration: 0.8, 
+              delay: 0.5,
+              y: {
+                duration: 0.6,
+                ease: "easeOut"
+              }
+            }}
           >
             Data Scientist & AI Engineer
           </motion.h2>
