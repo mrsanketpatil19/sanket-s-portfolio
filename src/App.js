@@ -65,7 +65,7 @@ const ContactInfoModal = ({ isOpen, onClose }) => {
         <div className="glass-card p-6 rounded-lg shadow-2xl min-w-[300px]">
           <div className="flex items-center mb-4">
             <img
-              src={`${process.env.PUBLIC_URL}/work_experience/WhatsApp Image 2025-07-04 at 11.59.37.jpeg`}
+              src={`${process.env.PUBLIC_URL}/work_experience/WhatsApp Image 2025-07-04 at 12.13.02.jpeg`}
               alt="Sanket Patil"
               className="w-12 h-12 rounded-full mr-3 border-2 border-neon-red"
             />
@@ -163,7 +163,7 @@ const Navigation = () => {
               onClick={toggleContactModal}
             >
               <img
-                src={`${process.env.PUBLIC_URL}/work_experience/WhatsApp Image 2025-07-04 at 11.59.37.jpeg`}
+                src={`${process.env.PUBLIC_URL}/work_experience/WhatsApp Image 2025-07-04 at 12.13.02.jpeg`}
                 alt="Sanket Patil"
                 className="w-10 h-10 rounded-full border-2 border-neon-red hover:border-neon-green transition-colors duration-300"
               />
@@ -224,7 +224,7 @@ const Hero = () => {
             className="mb-8"
           >
             <img
-              src={`${process.env.PUBLIC_URL}/work_experience/WhatsApp Image 2025-07-04 at 11.59.37.jpeg`}
+              src={`${process.env.PUBLIC_URL}/work_experience/WhatsApp Image 2025-07-04 at 12.13.02.jpeg`}
               alt="Sanket Patil"
               className="w-48 h-48 md:w-64 md:h-64 rounded-full mx-auto object-cover shadow-2xl border-4 border-neon-red"
             />
