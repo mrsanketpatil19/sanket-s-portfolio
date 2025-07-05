@@ -28,6 +28,8 @@ import {
   SiR,
   SiLeetcode
 } from 'react-icons/si';
+import beyondCallDutyAward from './assets/figmd-beyond-call-duty-award.png';
+import valuesAward from './assets/figmd-values-award.png';
 
 // Particle Component
 const Particles = () => {
@@ -101,7 +103,7 @@ const ContactInfoModal = ({ isOpen, onClose }) => {
               <FaGithub size={16} className="text-neon-blue" />
             </motion.a>
             <motion.a
-              href="https://linkedin.com/in/sanketpraveenpatil"
+              href="https://www.linkedin.com/in/sanket-patil-844281190/"
               target="_blank"
               rel="noopener noreferrer"
               className="p-2 bg-dark-card rounded-full hover-glow"
@@ -285,7 +287,7 @@ const Hero = () => {
               <FaGithub size={24} className="text-neon-blue" />
             </motion.a>
             <motion.a
-              href="https://linkedin.com/in/sanketpraveenpatil"
+              href="https://www.linkedin.com/in/sanket-patil-844281190/"
               target="_blank"
               rel="noopener noreferrer"
               className="p-4 glass-card hover-glow rounded-full"
@@ -502,87 +504,160 @@ const Skills = () => {
 };
 
 // Work Experience Modal Component
-const WorkExperienceModal = ({ isOpen, onClose, experience }) => {
+// Award Image Modal Component
+const AwardImageModal = ({ isOpen, onClose, award }) => {
   if (!isOpen) return null;
 
   return (
-    <div className="fixed inset-0 z-50 flex items-center justify-center bg-black bg-opacity-80 p-4" onClick={onClose}>
-      <div className="relative max-w-6xl max-h-[90vh] overflow-y-auto">
+    <div className="fixed inset-0 z-[9999] flex items-center justify-center bg-black bg-opacity-90 p-4" onClick={onClose}>
+      <div className="relative max-w-4xl max-h-[90vh] overflow-hidden">
         <motion.div
-          initial={{ scale: 0.5, opacity: 0 }}
+          initial={{ scale: 0.8, opacity: 0 }}
           animate={{ scale: 1, opacity: 1 }}
-          exit={{ scale: 0.5, opacity: 0 }}
+          exit={{ scale: 0.8, opacity: 0 }}
           className="relative"
           onClick={(e) => e.stopPropagation()}
         >
           <button
             onClick={onClose}
-            className="absolute -top-2 -right-2 z-10 w-8 h-8 bg-neon-red text-white rounded-full flex items-center justify-center hover:bg-red-600 transition-colors"
+            className="absolute -top-2 -right-2 z-[10000] w-8 h-8 bg-neon-red text-white rounded-full flex items-center justify-center hover:bg-red-600 transition-colors"
           >
             ×
           </button>
-          <div className="glass-card p-8 rounded-lg">
-            <div className="grid lg:grid-cols-3 gap-8">
-              <div className="lg:col-span-1">
-                {experience?.image ? (
-                  <img
-                    src={experience.image}
-                    alt={`${experience.company} workplace`}
-                    className="w-full h-64 object-cover rounded-lg shadow-2xl mb-6"
-                  />
-                ) : (
-                  <div className="w-full h-64 bg-dark-card rounded-lg flex items-center justify-center mb-6">
-                    <FaBriefcase className={`text-6xl text-${experience?.color}`} />
-                  </div>
-                )}
-                <div className="text-center lg:text-left">
-                  <h3 className={`text-3xl font-bold text-${experience?.color} mb-2`}>{experience?.title}</h3>
-                  <p className="text-2xl text-gray-300 mb-2">{experience?.company}</p>
-                  <p className="text-gray-400 flex items-center justify-center lg:justify-start mb-2">
-                    <FaMapMarkerAlt className="mr-2" />
-                    {experience?.location}
-                  </p>
-                  <p className={`text-${experience?.color} font-semibold text-lg`}>{experience?.duration}</p>
-                </div>
-              </div>
-              
-              <div className="lg:col-span-2">
-                <div className="space-y-6">
-                  {experience?.project && (
-                    <div>
-                      <h4 className="text-xl font-semibold text-neon-blue mb-3">📚 {experience.project}</h4>
-                    </div>
-                  )}
-                  
-                  <div className="space-y-4">
-                    {experience?.details?.map((detail, index) => (
-                      <div key={index} className="flex items-start space-x-3">
-                        <div className={`w-2 h-2 bg-${experience.color} rounded-full mt-2 flex-shrink-0`}></div>
-                        <p className="text-gray-300 leading-relaxed">{detail}</p>
-                      </div>
-                    ))}
-                  </div>
-                  
-                  {experience?.achievements && (
-                    <div className="mt-6 p-4 bg-dark-card rounded-lg">
-                      <h4 className="text-lg font-semibold text-neon-green mb-3">🏆 Key Achievements</h4>
-                      <div className="space-y-2">
-                        {experience.achievements.map((achievement, index) => (
-                          <div key={index} className="flex items-start space-x-3">
-                            <div className="w-2 h-2 bg-neon-green rounded-full mt-2 flex-shrink-0"></div>
-                            <p className="text-gray-300 text-sm">{achievement}</p>
-                          </div>
-                        ))}
-                      </div>
-                    </div>
-                  )}
-                </div>
-              </div>
-            </div>
+          <div className="bg-dark-card p-4 rounded-lg shadow-2xl">
+            <img
+              src={award?.image}
+              alt={award?.awardName || award?.text}
+              className="w-full h-auto max-h-[80vh] object-contain rounded-lg shadow-2xl"
+            />
+            <p className="text-center text-gray-300 mt-4 text-sm">
+              {award?.awardName ? `${award.text}"${award.awardName}"${award.afterText}` : award?.text}
+            </p>
           </div>
         </motion.div>
       </div>
     </div>
+  );
+};
+
+const WorkExperienceModal = ({ isOpen, onClose, experience }) => {
+  const [selectedAward, setSelectedAward] = useState(null);
+  const [isAwardModalOpen, setIsAwardModalOpen] = useState(false);
+
+  if (!isOpen) return null;
+
+  const openAwardModal = (award) => {
+    setSelectedAward(award);
+    setIsAwardModalOpen(true);
+  };
+
+  const closeAwardModal = () => {
+    setIsAwardModalOpen(false);
+    setSelectedAward(null);
+  };
+
+  return (
+    <>
+      <div className="fixed inset-0 z-50 flex items-center justify-center bg-black bg-opacity-80 p-4" onClick={onClose}>
+        <div className="relative max-w-6xl max-h-[90vh] overflow-y-auto">
+          <motion.div
+            initial={{ scale: 0.5, opacity: 0 }}
+            animate={{ scale: 1, opacity: 1 }}
+            exit={{ scale: 0.5, opacity: 0 }}
+            className="relative"
+            onClick={(e) => e.stopPropagation()}
+          >
+            <button
+              onClick={onClose}
+              className="absolute -top-2 -right-2 z-10 w-8 h-8 bg-neon-red text-white rounded-full flex items-center justify-center hover:bg-red-600 transition-colors"
+            >
+              ×
+            </button>
+            <div className="glass-card p-8 rounded-lg">
+              <div className="grid lg:grid-cols-3 gap-8">
+                <div className="lg:col-span-1">
+                  {experience?.image ? (
+                    <img
+                      src={experience.image}
+                      alt={`${experience.company} workplace`}
+                      className="w-full h-64 object-cover rounded-lg shadow-2xl mb-6"
+                    />
+                  ) : (
+                    <div className="w-full h-64 bg-dark-card rounded-lg flex items-center justify-center mb-6">
+                      <FaBriefcase className={`text-6xl text-${experience?.color}`} />
+                    </div>
+                  )}
+                  <div className="text-center lg:text-left">
+                    <h3 className={`text-3xl font-bold text-${experience?.color} mb-2`}>{experience?.title}</h3>
+                    <p className="text-2xl text-gray-300 mb-2">{experience?.company}</p>
+                    <p className="text-gray-400 flex items-center justify-center lg:justify-start mb-2">
+                      <FaMapMarkerAlt className="mr-2" />
+                      {experience?.location}
+                    </p>
+                    <p className={`text-${experience?.color} font-semibold text-lg`}>{experience?.duration}</p>
+                  </div>
+                </div>
+                
+                <div className="lg:col-span-2">
+                  <div className="space-y-6">
+                    {experience?.project && (
+                      <div>
+                        <h4 className="text-xl font-semibold text-neon-blue mb-3">📚 {experience.project}</h4>
+                      </div>
+                    )}
+                    
+                    <div className="space-y-4">
+                      {experience?.details?.map((detail, index) => (
+                        <div key={index} className="flex items-start space-x-3">
+                          <div className={`w-2 h-2 bg-${experience.color} rounded-full mt-2 flex-shrink-0`}></div>
+                          <p className="text-gray-300 leading-relaxed">{detail}</p>
+                        </div>
+                      ))}
+                    </div>
+                    
+                    {experience?.achievements && (
+                      <div className="mt-6 p-4 bg-dark-card rounded-lg">
+                        <h4 className="text-lg font-semibold text-neon-green mb-3">🏆 Key Achievements</h4>
+                        <div className="space-y-2">
+                                                  {experience.achievements.map((achievement, index) => (
+                          <div key={index} className="flex items-start space-x-3">
+                            <div className="w-2 h-2 bg-neon-green rounded-full mt-2 flex-shrink-0"></div>
+                            <p className="text-gray-300 text-sm">
+                              {achievement.hasImage ? (
+                                <>
+                                  {achievement.text}
+                                  <span 
+                                    className="cursor-pointer hover:text-neon-green transition-colors underline decoration-neon-green/50 hover:decoration-neon-green font-semibold"
+                                    onClick={() => openAwardModal(achievement)}
+                                  >
+                                    "{achievement.awardName}"
+                                  </span>
+                                  {achievement.afterText}
+                                  <span className="ml-2 text-neon-green">🏆</span>
+                                </>
+                              ) : (
+                                achievement.text || achievement
+                              )}
+                            </p>
+                          </div>
+                        ))}
+                        </div>
+                      </div>
+                    )}
+                  </div>
+                </div>
+              </div>
+            </div>
+          </motion.div>
+        </div>
+      </div>
+      
+      <AwardImageModal 
+        isOpen={isAwardModalOpen} 
+        onClose={closeAwardModal} 
+        award={selectedAward} 
+      />
+    </>
   );
 };
 
@@ -635,10 +710,28 @@ const Experience = () => {
         "Automated data quality validation checks using custom Python scripts, significantly reducing transfer-related errors and manual QA overhead."
       ],
       achievements: [
-        "Recognized with the \"Beyond the Call of Duty\" award for driving innovation in registry data architecture",
-        "Received \"FIGmd Values Award\" for exceptional client collaboration and technical excellence",
-        "Reduced reporting delays by 25% through optimized SQL pipeline architecture",
-        "Improved workflow efficiency by 40%+ through advanced query optimization techniques"
+        {
+          text: "Recognized with the ",
+          awardName: "Beyond the Call of Duty",
+          afterText: " award for driving innovation in registry data architecture",
+          image: beyondCallDutyAward,
+          hasImage: true
+        },
+        {
+          text: "Received ",
+          awardName: "FIGmd Values Award",
+          afterText: " for exceptional client collaboration and technical excellence",
+          image: valuesAward,
+          hasImage: true
+        },
+        {
+          text: "Reduced reporting delays by 25% through optimized SQL pipeline architecture",
+          hasImage: false
+        },
+        {
+          text: "Improved workflow efficiency by 40%+ through advanced query optimization techniques",
+          hasImage: false
+        }
       ]
     }
   ];
@@ -871,6 +964,70 @@ const Projects = () => {
       image: `${process.env.PUBLIC_URL}/work_experience/image.png`,
       color: "neon-blue",
       emoji: "🏥"
+    },
+    {
+      id: 3,
+      title: "Fashion Recommender System",
+      technologies: "Python, ResNet50, CNN, KNN, Streamlit, AWS EC2, S3",
+      date: "Feb 2025",
+      description: "A scalable visual fashion recommender system that provides intuitive, visually similar product recommendations based on deep learning image embeddings and real-time similarity matching.",
+      problem: "Fashion e-commerce platforms struggle to provide intuitive, visually similar product recommendations based on images. Most systems rely on text-based filters or tags, which often fail to capture a user's actual visual preference. The challenge was to build a scalable visual recommender that understands style similarity across thousands of fashion items and runs interactively in real time.",
+      features: [
+        {
+          title: "Image Feature Extraction",
+          description: "Curated a dataset of 44,000+ fashion images across 20 categories. Used pre-trained ResNet50 (without the final classification layer) to extract 2048-dimensional feature embeddings for each image. Normalized embeddings to enable cosine similarity–based recommendations."
+        },
+        {
+          title: "Similarity Engine",
+          description: "Implemented a K-Nearest Neighbors (KNN) model to find top visually similar items based on embeddings. Built a function to return N similar items given a query image or product."
+        },
+        {
+          title: "Web Interface",
+          description: "Developed a fully interactive app using Streamlit to let users upload an image or select from gallery items. Displayed top 5–10 visually similar fashion products with category, similarity score, and download links."
+        },
+        {
+          title: "Deployment",
+          description: "Deployed the entire system on AWS EC2, using S3 for image storage and retrieval. Ensured the system could handle concurrent requests and scale based on user traffic."
+        }
+      ],
+      optimizations: [
+        "Used batch preprocessing and lazy loading of embeddings to reduce memory usage",
+        "Reduced inference latency to under 1.2 seconds per query, even on EC2 t2.medium instances",
+        "Enabled caching with Streamlit and NumPy memmaps to accelerate repeat queries",
+        "Filtered corrupt or low-resolution images using a custom validation script before model processing"
+      ],
+      impact: "Delivered a lightweight, deployable fashion recommender system that could be integrated into any e-commerce website. Eliminated the need for manual tagging or curation by using deep visual embeddings. Enhanced user experience by offering intuitive, visual product discovery, helping bridge the gap between style and search. Demonstrated the power of combining deep learning + KNN + cloud deployment in real-world recommender systems.",
+      image: `${process.env.PUBLIC_URL}/work_experience/ChatGPT Image Jul 4, 2025, 06_44_13 PM.png`,
+      color: "neon-green",
+      emoji: "👗"
+    },
+    {
+      id: 4,
+      title: "Property Price Prediction",
+      technologies: "Python, Scikit-learn, XGBoost, Random Forest, GridSearchCV",
+      date: "Feb 2025",
+      description: "A robust machine learning model for accurate real estate price predictions using advanced feature engineering and ensemble methods on over 1 million property records.",
+      problem: "Real estate companies need accurate price predictions to drive better investments, optimize listings, and estimate market value. However, housing data is high-dimensional and often noisy—with inconsistencies, outliers, missing values, and complex feature interactions. The challenge was to build a robust model that generalizes well across diverse property types using more than 1 million records.",
+      features: [
+        {
+          title: "Data Preparation",
+          description: "Preprocessed over 1 million rows of real estate data containing 83+ numeric and categorical features (e.g., area, location, amenities, year built). Applied feature engineering techniques such as polynomial features, interaction terms, and composite features (e.g., price per sq.ft). Handled missing data, outliers, and extreme skewness through capping and log transformation."
+        },
+        {
+          title: "Model Development",
+          description: "Trained and evaluated multiple regression models including Linear Regression, Ridge, Lasso, Random Forest, and XGBoost. Tuned hyperparameters using GridSearchCV with K-fold cross-validation (k=5) for each model. Implemented an ensemble strategy to evaluate performance consistency across models."
+        }
+      ],
+      optimizations: [
+        "Boosted R-squared by 8% after hyperparameter tuning and advanced feature engineering",
+        "Used feature importance plots and permutation importance to reduce dimensionality while preserving accuracy",
+        "Scaled numeric features using StandardScaler and applied one-hot encoding for categorical variables",
+        "Benchmarked models using metrics like RMSE, MAE, and adjusted R² to ensure model generalization"
+      ],
+      impact: "Delivered a high-accuracy property pricing model ready for integration with real estate platforms or valuation tools. Made the model interpretable by tracking top predictive features (e.g., location, size, year). Showcased the ability to build scalable ML pipelines for noisy, real-world tabular data. Demonstrated proficiency in model selection, tuning, and deployment preparation for predictive analytics.",
+      image: `${process.env.PUBLIC_URL}/work_experience/ChatGPT Image Jul 4, 2025, 07_07_31 PM.png`,
+      color: "neon-red",
+      emoji: "🏘️"
     }
   ];
 
@@ -1171,7 +1328,7 @@ const Contact = () => {
                   <FaGithub size={24} className="text-neon-blue" />
                 </motion.a>
                 <motion.a
-                  href="https://linkedin.com/in/sanketpraveenpatil"
+                  href="https://www.linkedin.com/in/sanket-patil-844281190/"
                   target="_blank"
                   rel="noopener noreferrer"
                   className="p-4 bg-dark-card rounded-full hover-glow"

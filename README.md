@@ -72,7 +72,7 @@ The build files will be created in the `build` folder.
 - **Phone**: 464-300-9543
 - **Location**: Chicago, IL
 - **GitHub**: [mrsanketpatil19](https://github.com/mrsanketpatil19)
-- **LinkedIn**: [sanketpraveenpatil](https://linkedin.com/in/sanketpraveenpatil)
+- **LinkedIn**: [sanket-patil-844281190](https://www.linkedin.com/in/sanket-patil-844281190/)
 - **LeetCode**: [sanketpraveenpatil](https://leetcode.com/u/sanketpraveenpatil/)
 
 ## License
