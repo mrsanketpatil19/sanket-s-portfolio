@@ -382,7 +382,7 @@ const Skills = () => {
   ];
 
   return (
-    <section id="skills" className="py-20 bg-dark-card" ref={ref}>
+    <section id="skills" className="py-20 bg-dark-bg" ref={ref}>
       <div className="container mx-auto px-6">
         <motion.div
           initial={{ opacity: 0, y: 50 }}
@@ -759,7 +759,7 @@ const Projects = () => {
   };
 
   return (
-    <section id="projects" className="py-20 bg-dark-bg" ref={ref}>
+    <section id="projects" className="py-20 bg-dark-card" ref={ref}>
       <div className="container mx-auto px-6">
         <motion.div
           initial={{ opacity: 0, y: 50 }}
@@ -1052,7 +1052,7 @@ const Experience = () => {
   };
 
   return (
-    <section id="experience" className="py-20 bg-dark-card" ref={ref}>
+    <section id="experience" className="py-20 bg-dark-bg" ref={ref}>
       <div className="container mx-auto px-6">
         <motion.div
           initial={{ opacity: 0, y: 50 }}
