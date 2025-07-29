@@ -650,7 +650,7 @@ const Projects = () => {
         "Ensured security by sanitizing dynamic SQL inputs before execution"
       ],
       impact: "Enabled querying over 3,000+ embeddings and 15+ data sources with a unified natural language interface. Showcased potential for enterprise use cases like healthcare record QA, compliance document search, and multi-department business intelligence.",
-      image: `${process.env.PUBLIC_URL}/work_experience/ChatGPT Image Jul 3, 2025, 09_58_12 PM.png`,
+      image: `${process.env.PUBLIC_URL}/work_experience/LLM_MultiDB_Chatbot.png`,
       emoji: "🧠"
     },
     {
