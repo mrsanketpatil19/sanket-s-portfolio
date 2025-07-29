@@ -15,84 +15,87 @@
 }
 
 @layer components {
-  .glow-text {
-    text-shadow: 0 0 10px currentColor, 0 0 20px currentColor, 0 0 40px currentColor;
-  }
-  
-  .neon-border {
-    border: 1px solid transparent;
-    background: linear-gradient(45deg, #ff073a, #39ff14, #00d4ff) border-box;
-    -webkit-mask: linear-gradient(#fff 0 0) padding-box, linear-gradient(#fff 0 0);
-    -webkit-mask-composite: xor;
-    mask: linear-gradient(#fff 0 0) padding-box, linear-gradient(#fff 0 0);
-    mask-composite: exclude;
-  }
-  
   .gradient-text {
-    background: linear-gradient(45deg, #ff073a, #39ff14, #00d4ff);
+    background: linear-gradient(135deg, #3b82f6, #60a5fa);
     -webkit-background-clip: text;
     -webkit-text-fill-color: transparent;
     background-clip: text;
-    background-size: 300% 300%;
-    animation: gradient 6s ease infinite;
   }
   
-  .red-gradient-text {
-    background: linear-gradient(90deg, #ff073a, #ff9999);
-    -webkit-background-clip: text;
-    -webkit-text-fill-color: transparent;
-    background-clip: text;
-    background-size: 200% 200%;
-    animation: gradient 6s ease infinite;
+  .card {
+    @apply bg-dark-card rounded-lg shadow-soft border border-gray-700;
   }
   
-  .glass-card {
-    background: rgba(26, 26, 26, 0.8);
-    backdrop-filter: blur(20px);
-    border: 1px solid rgba(255, 255, 255, 0.1);
+  .card-hover {
+    @apply transition-all duration-300 hover:shadow-medium hover:-translate-y-1 hover:border-primary/30;
   }
   
-  .particle {
-    position: absolute;
-    width: 2px;
-    height: 2px;
-    background: #00d4ff;
-    border-radius: 50%;
-    animation: float 3s ease-in-out infinite;
+  .project-card-hover {
+    @apply transition-all duration-500 hover:scale-105 hover:shadow-large hover:border-primary/50 hover:-translate-y-2;
   }
   
-  .particle:nth-child(2) {
-    background: #39ff14;
-    animation-delay: 0.5s;
+  .project-card-hover:hover {
+    box-shadow: 0 20px 40px -10px rgba(59, 130, 246, 0.3), 0 10px 20px -5px rgba(59, 130, 246, 0.2);
   }
   
-  .particle:nth-child(3) {
-    background: #ff073a;
-    animation-delay: 1s;
+  .btn-primary {
+    @apply bg-primary text-white px-6 py-3 rounded-lg font-semibold transition-all duration-300 hover:bg-secondary hover:shadow-glow;
   }
   
-  .particle:nth-child(4) {
-    background: #00d4ff;
-    animation-delay: 1.5s;
+  .btn-secondary {
+    @apply bg-dark-card text-primary border-2 border-primary px-6 py-3 rounded-lg font-semibold transition-all duration-300 hover:bg-primary hover:text-white;
   }
   
-  .hover-glow {
-    transition: all 0.3s ease;
+  .section-title {
+    @apply text-4xl md:text-5xl font-bold text-white mb-4;
   }
   
-  .hover-glow:hover {
-    transform: translateY(-5px);
-    box-shadow: 0 10px 30px rgba(0, 212, 255, 0.3);
+  .section-subtitle {
+    @apply text-xl text-gray-300 mb-12;
+  }
+  
+  .nav-link {
+    @apply text-gray-300 hover:text-primary transition-colors duration-300 font-medium;
+  }
+  
+  .nav-link.active {
+    @apply text-primary border-b-2 border-primary;
   }
   
   .skill-bar {
-    background: linear-gradient(90deg, #00d4ff, #39ff14, #ff073a);
-    background-size: 200% 100%;
-    animation: gradient 3s ease infinite;
+    @apply bg-gray-700 rounded-full h-2 overflow-hidden;
   }
   
-  .animate-pulse-glow {
-    animation: pulse-glow 2s ease-in-out infinite;
+  .skill-progress {
+    @apply bg-gradient-to-r from-primary to-accent h-full rounded-full transition-all duration-1000;
+  }
+  
+  .social-link {
+    @apply text-gray-400 hover:text-primary transition-colors duration-300;
+  }
+  
+  .form-input {
+    @apply w-full px-4 py-3 bg-dark-card border border-gray-700 rounded-lg focus:outline-none focus:ring-2 focus:ring-primary focus:border-transparent transition-all duration-300 text-white;
+  }
+  
+  .form-textarea {
+    @apply w-full px-4 py-3 bg-dark-card border border-gray-700 rounded-lg focus:outline-none focus:ring-2 focus:ring-primary focus:border-transparent transition-all duration-300 resize-none text-white;
+  }
+  
+  .geometric-shape {
+    @apply absolute opacity-10 text-primary;
+  }
+  
+  .geometric-circle {
+    @apply geometric-shape w-8 h-8 rounded-full bg-primary;
+  }
+  
+  .geometric-x {
+    @apply geometric-shape text-2xl font-bold;
+  }
+  
+  .geometric-plus {
+    @apply geometric-shape text-xl font-bold;
   }
 }
 
@@ -102,45 +105,78 @@
 }
 
 ::-webkit-scrollbar-track {
-  background: #0a0a0a;
+  background: #1e293b;
 }
 
 ::-webkit-scrollbar-thumb {
-  background: linear-gradient(45deg, #ff073a, #ff9999);
+  background: #3b82f6;
   border-radius: 4px;
 }
 
 ::-webkit-scrollbar-thumb:hover {
-  background: linear-gradient(45deg, #ff9999, #ff073a);
+  background: #60a5fa;
 }
 
 /* Custom animations */
-@keyframes typewriter {
-  from { width: 0 }
-  to { width: 100% }
-}
-
-@keyframes blink {
-  50% { border-color: transparent }
-}
-
-@keyframes pulse-glow {
-  0%, 100% {
-    text-shadow: 
-      0 0 5px rgba(0, 212, 255, 0.3),
-      0 0 10px rgba(0, 212, 255, 0.2);
+@keyframes fadeInUp {
+  from {
+    opacity: 0;
+    transform: translateY(30px);
   }
-  50% {
-    text-shadow: 
-      0 0 15px rgba(0, 212, 255, 0.8),
-      0 0 25px rgba(0, 212, 255, 0.6),
-      0 0 35px rgba(0, 212, 255, 0.4);
+  to {
+    opacity: 1;
+    transform: translateY(0);
   }
 }
 
-.typewriter {
+@keyframes slideInLeft {
+  from {
+    opacity: 0;
+    transform: translateX(-30px);
+  }
+  to {
+    opacity: 1;
+    transform: translateX(0);
+  }
+}
+
+@keyframes slideInRight {
+  from {
+    opacity: 0;
+    transform: translateX(30px);
+  }
+  to {
+    opacity: 1;
+    transform: translateX(0);
+  }
+}
+
+.animate-fade-in-up {
+  animation: fadeInUp 0.6s ease-out;
+}
+
+.animate-slide-in-left {
+  animation: slideInLeft 0.6s ease-out;
+}
+
+.animate-slide-in-right {
+  animation: slideInRight 0.6s ease-out;
+}
+
+/* Hide scrollbar for webkit browsers */
+.scrollbar-hide {
+  -ms-overflow-style: none;  /* IE and Edge */
+  scrollbar-width: none;  /* Firefox */
+}
+
+.scrollbar-hide::-webkit-scrollbar {
+  display: none;
+}
+
+/* Line clamp utility */
+.line-clamp-3 {
+  display: -webkit-box;
+  -webkit-line-clamp: 3;
+  -webkit-box-orient: vertical;
   overflow: hidden;
-  border-right: 0.15em solid #00d4ff;
-  white-space: nowrap;
-  animation: typewriter 3s steps(40, end), blink 0.75s step-end infinite;
-} 
+}
