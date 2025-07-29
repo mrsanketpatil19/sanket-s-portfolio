@@ -2,6 +2,10 @@
 
 A stunning dark-themed portfolio website built with React, Tailwind CSS, and Framer Motion featuring neon colors, smooth animations, and responsive design.
 
+## 🌐 Live Demo
+
+**Visit my portfolio**: [https://mrsanketpatil19.github.io/sanket-s-portfolio-website/](https://mrsanketpatil19.github.io/sanket-s-portfolio-website/)
+
 ## Features
 
 - 🌙 **Dark Theme**: Full dark background with vibrant neon colors (red, green, blue)
@@ -32,8 +36,8 @@ A stunning dark-themed portfolio website built with React, Tailwind CSS, and Fra
 
 1. **Clone the repository**
    ```bash
-   git clone <repository-url>
-   cd Portfolio
+   git clone https://github.com/mrsanketpatil19/sanket-s-portfolio-website.git
+   cd sanket-s-portfolio-website
    ```
 
 2. **Install dependencies**
@@ -58,6 +62,17 @@ npm run build
 ```
 
 The build files will be created in the `build` folder.
+
+## Deployment
+
+This portfolio is automatically deployed to GitHub Pages using GitHub Actions. Any push to the `main` branch will trigger a new deployment.
+
+### Manual Deployment
+
+If you need to deploy manually:
+
+1. Build the project: `npm run build`
+2. Deploy to GitHub Pages using the `gh-pages` branch
 
 ## Customization
 
