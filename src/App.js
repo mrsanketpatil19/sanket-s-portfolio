@@ -382,7 +382,7 @@ const Skills = () => {
   ];
 
   return (
-    <section id="skills" className="py-20 bg-dark-bg" ref={ref}>
+    <section id="skills" className="py-20 bg-dark-card" ref={ref}>
       <div className="container mx-auto px-6">
         <motion.div
           initial={{ opacity: 0, y: 50 }}
@@ -1441,9 +1441,9 @@ function App() {
       <Navigation />
       <Hero />
       <About />
-      <Skills />
       <Experience />
       <Projects />
+      <Skills />
       <Certifications />
       <Contact />
       <Footer />
