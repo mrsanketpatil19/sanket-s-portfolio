@@ -814,7 +814,7 @@ const Projects = () => {
                 initial={{ opacity: 0, x: 50 }}
                 animate={inView ? { opacity: 1, x: 0 } : {}}
                 transition={{ duration: 0.8, delay: index * 0.1 }}
-                className="card project-card-hover p-6 cursor-pointer border border-gray-700 flex-shrink-0 w-80"
+                className="card project-card-hover p-6 cursor-pointer border border-gray-700 flex-shrink-0 w-80 bg-dark-card"
                 onClick={() => openModal(project)}
               >
                 {/* Project Image */}
