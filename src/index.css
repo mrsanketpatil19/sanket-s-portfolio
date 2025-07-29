@@ -16,7 +16,7 @@
 
 @layer components {
   .gradient-text {
-    background: linear-gradient(135deg, #3b82f6, #60a5fa);
+    background: linear-gradient(135deg, #14b8a6, #5eead4);
     -webkit-background-clip: text;
     -webkit-text-fill-color: transparent;
     background-clip: text;
@@ -35,7 +35,7 @@
   }
   
   .project-card-hover:hover {
-    box-shadow: 0 20px 40px -10px rgba(59, 130, 246, 0.3), 0 10px 20px -5px rgba(59, 130, 246, 0.2);
+    box-shadow: 0 20px 40px -10px rgba(20, 184, 166, 0.3), 0 10px 20px -5px rgba(20, 184, 166, 0.2);
   }
   
   .btn-primary {
@@ -109,12 +109,12 @@
 }
 
 ::-webkit-scrollbar-thumb {
-  background: #3b82f6;
+  background: #14b8a6;
   border-radius: 4px;
 }
 
 ::-webkit-scrollbar-thumb:hover {
-  background: #60a5fa;
+  background: #5eead4;
 }
 
 /* Custom animations */
