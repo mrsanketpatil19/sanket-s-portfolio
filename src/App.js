@@ -549,6 +549,42 @@ const Projects = () => {
   const projects = [
     {
       id: 1,
+      title: "NCAA March Madness 2025 Prediction System",
+      technologies: "Python, XGBoost, FastAPI, Bootstrap 5, Machine Learning, Data Science, Plotly.js",
+      date: "Jan 2025",
+      description: "A comprehensive Machine Learning-powered web application that predicts NCAA basketball tournament outcomes using advanced data science techniques. Achieves 81.6% prediction accuracy with 20+ years of historical data.",
+      problem: "March Madness is one of the most unpredictable sporting events, with millions of fans trying to predict tournament outcomes. Traditional bracket predictions rely heavily on intuition and basic statistics, often resulting in poor accuracy. This project addresses this challenge by automating the prediction process and providing data-driven insights.",
+      features: [
+        {
+          title: "1. Advanced Machine Learning Pipeline",
+          description: "Implemented XGBoost algorithm for binary classification with 45+ engineered features from raw tournament data. Achieved 81.6% prediction accuracy vs. random guessing (~50%) with AUC score of 0.923 and Brier score of 0.062."
+        },
+        {
+          title: "2. Comprehensive Data Processing", 
+          description: "Processed 20+ years of historical tournament data (1985-2024 Men's, 1998-2024 Women's) with feature engineering including seed difference (45% importance), field goal percentage (25%), 3-point percentage (15%), and free throw percentage (10%)."
+        },
+        {
+          title: "3. Full-Stack Web Application",
+          description: "Built FastAPI backend with RESTful API design and auto-generated documentation. Created responsive frontend using Bootstrap 5.3 with interactive visualizations using Plotly.js, featuring real-time predictions and dynamic charts."
+        },
+        {
+          title: "4. Advanced Analytics Dashboard",
+          description: "Developed comprehensive analytics including team vs team predictions, complete bracket simulation, seed performance analysis, conference strength evaluation, and upset pattern identification with confidence scoring."
+        }
+      ],
+      optimizations: [
+        "Feature engineering improved model accuracy by 31.6% over baseline",
+        "Production deployment with pickle serialization for fast model loading",
+        "Responsive design optimized for mobile, tablet, and desktop users",
+        "Real-time prediction system with <100ms average response time"
+      ],
+      impact: "Created a production-ready application that combines cutting-edge machine learning with modern web development. Demonstrates full-stack development capabilities, advanced data science skills, and practical business value. Ready for integration with sports betting platforms or media outlets.",
+      image: `${process.env.PUBLIC_URL}/work_experience/NCAA.png`,
+      emoji: "🏀",
+      deployedLink: "https://ncaa-march-madness-2024.onrender.com/"
+    },
+    {
+      id: 2,
       title: "NFL Rushing Yards Predictor",
       technologies: "Python, XGBoost, Scikit-learn, FastAPI, Pandas, Bootstrap 5, Machine Learning",
       date: "Jun 2025",
@@ -584,7 +620,7 @@ const Projects = () => {
       deployedLink: "https://nfl-big-data-bowl-2023-player.onrender.com/"
     },
     {
-      id: 2,
+      id: 3,
       title: "LLM-Based Multi-Database Chatbot System",
       technologies: "LangChain, RAG, SQL Agents, OpenAI (GPT-4), Vector DBs (FAISS), Python",
       date: "Mar 2025",
@@ -618,7 +654,7 @@ const Projects = () => {
       emoji: "🧠"
     },
     {
-      id: 2,
+      id: 4,
       title: "Medical Chatbot and Provider Dashboard",
       technologies: "Flask, LangChain, OpenAI API, Pandas, NumPy, JavaScript",
       date: "Jan 2025",
@@ -649,7 +685,7 @@ const Projects = () => {
       emoji: "🏥"
     },
     {
-      id: 3,
+      id: 5,
       title: "Fashion Recommender System",
       technologies: "Python, ResNet50, CNN, KNN, Streamlit, AWS EC2, S3",
       date: "Feb 2025",
@@ -684,7 +720,7 @@ const Projects = () => {
       emoji: "👗"
     },
     {
-      id: 4,
+      id: 6,
       title: "Property Price Prediction",
       technologies: "Python, Scikit-learn, XGBoost, Random Forest, GridSearchCV",
       date: "Feb 2025",
