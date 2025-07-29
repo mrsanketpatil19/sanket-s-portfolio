@@ -1,15 +1,15 @@
 {
   "files": {
-    "main.css": "/sanket-s-portfolio/static/css/main.80c791a3.css",
-    "main.js": "/sanket-s-portfolio/static/js/main.f835cfa6.js",
+    "main.css": "/sanket-s-portfolio/static/css/main.769efd65.css",
+    "main.js": "/sanket-s-portfolio/static/js/main.47ecea25.js",
     "static/media/figmd-values-award.png": "/sanket-s-portfolio/static/media/figmd-values-award.13adf71f34bae93bd3d9.png",
     "static/media/figmd-beyond-call-duty-award.png": "/sanket-s-portfolio/static/media/figmd-beyond-call-duty-award.eb2db02b218c8f9c4473.png",
     "index.html": "/sanket-s-portfolio/index.html",
-    "main.80c791a3.css.map": "/sanket-s-portfolio/static/css/main.80c791a3.css.map",
-    "main.f835cfa6.js.map": "/sanket-s-portfolio/static/js/main.f835cfa6.js.map"
+    "main.769efd65.css.map": "/sanket-s-portfolio/static/css/main.769efd65.css.map",
+    "main.47ecea25.js.map": "/sanket-s-portfolio/static/js/main.47ecea25.js.map"
   },
   "entrypoints": [
-    "static/css/main.80c791a3.css",
-    "static/js/main.f835cfa6.js"
+    "static/css/main.769efd65.css",
+    "static/js/main.47ecea25.js"
   ]
 }
