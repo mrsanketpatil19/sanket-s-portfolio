@@ -465,6 +465,19 @@ const ProjectModal = ({ isOpen, onClose, project }) => {
                 <span className="text-gray-300 text-sm">{project.technologies}</span>
               </div>
               <p className="text-lg text-gray-300 leading-relaxed mb-6">{project.description}</p>
+              {project.deployedLink && (
+                <div className="mb-6">
+                  <a
+                    href={project.deployedLink}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="inline-flex items-center space-x-2 px-4 py-2 bg-primary text-white rounded-lg hover:bg-secondary transition-colors duration-300"
+                  >
+                    <span>🌐</span>
+                    <span>View Live Demo</span>
+                  </a>
+                </div>
+              )}
             </div>
 
             {/* Project Image */}
@@ -536,6 +549,42 @@ const Projects = () => {
   const projects = [
     {
       id: 1,
+      title: "NFL Rushing Yards Predictor",
+      technologies: "Python, XGBoost, Scikit-learn, FastAPI, Pandas, Bootstrap 5, Machine Learning",
+      date: "Jun 2025",
+      description: "A sophisticated machine learning application that predicts NFL rushing yards using advanced analytics and AI. Features real-time predictions with 3.42 yards MAE accuracy.",
+      problem: "Fantasy football players, sports analysts, and coaches need accurate rushing yard predictions to make data-driven decisions. Traditional statistical models lack the sophistication to capture complex player dynamics, field positioning, and game situations that influence rushing success.",
+      features: [
+        {
+          title: "1. Advanced Data Preprocessing",
+          description: "Processed 682,154 rows of NFL Big Data Bowl 2020 dataset with 49 columns. Engineered 14 key features including coordinate standardization, physics-based projected positions, and player demographics. Applied complex coordinate transformations to handle play direction consistency."
+        },
+        {
+          title: "2. Ensemble Machine Learning Models", 
+          description: "Implemented XGBoost regressor as primary model and Stacking ensemble (Ridge + Random Forest + XGBoost) as secondary model. Achieved 3.42 yards MAE with 28% improvement over baseline statistical models."
+        },
+        {
+          title: "3. Professional Web Application",
+          description: "Built FastAPI backend with automatic API documentation and NFL-themed frontend using Bootstrap 5. Features interactive football field positioning, real-time sliders for player metrics, and confidence scores."
+        },
+        {
+          title: "4. Real-time Prediction System",
+          description: "Deployed on Render with live prediction capabilities. Users can input player metrics, game situation, and field position to get instant rushing yard predictions with confidence scores and model explanations."
+        }
+      ],
+      optimizations: [
+        "Coordinate standardization eliminated directional bias in predictions",
+        "Physics-based projected positions added predictive power using trigonometry",
+        "Ensemble approach improved model robustness and reduced overfitting",
+        "Professional NFL branding enhanced user experience and credibility"
+      ],
+      impact: "Achieved top-5% performance in NFL Big Data Bowl competition. The deployed application serves fantasy football players, sports analysts, and coaches with accurate, real-time rushing predictions. Demonstrates advanced ML skills in sports analytics.",
+      image: `${process.env.PUBLIC_URL}/work_experience/nfl-rushing-predictor.jpg`,
+      emoji: "🏈",
+      deployedLink: "https://nfl-big-data-bowl-2023-player.onrender.com/"
+    },
+    {
+      id: 2,
       title: "LLM-Based Multi-Database Chatbot System",
       technologies: "LangChain, RAG, SQL Agents, OpenAI (GPT-4), Vector DBs (FAISS), Python",
       date: "Mar 2025",
@@ -758,9 +807,17 @@ const Projects = () => {
                     <span className="text-gray-300 text-xs font-medium">{project.technologies}</span>
                   </div>
                   <p className="text-gray-300 leading-relaxed text-sm line-clamp-3">{project.description}</p>
-                  <div className="inline-flex items-center space-x-2 px-3 py-1.5 bg-primary bg-opacity-10 rounded-full border border-primary transition-all duration-300 hover:bg-primary hover:text-white group">
-                    <span className="text-primary font-semibold text-sm group-hover:text-white transition-colors">Click to explore</span>
-                    <span className="text-primary group-hover:text-white transition-colors group-hover:translate-x-1">→</span>
+                  <div className="flex items-center justify-between">
+                    <div className="inline-flex items-center space-x-2 px-3 py-1.5 bg-primary bg-opacity-10 rounded-full border border-primary transition-all duration-300 hover:bg-primary hover:text-white group">
+                      <span className="text-primary font-semibold text-sm group-hover:text-white transition-colors">Click to explore</span>
+                      <span className="text-primary group-hover:text-white transition-colors group-hover:translate-x-1">→</span>
+                    </div>
+                    {project.deployedLink && (
+                      <div className="inline-flex items-center space-x-1 px-2 py-1 bg-green-500 bg-opacity-20 rounded-full border border-green-500">
+                        <span className="text-green-400 text-xs">🌐</span>
+                        <span className="text-green-400 text-xs font-medium">Live</span>
+                      </div>
+                    )}
                   </div>
                 </div>
               </motion.div>

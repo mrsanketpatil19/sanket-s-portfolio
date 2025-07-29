@@ -16,7 +16,7 @@ A stunning dark-themed portfolio website built with React, Tailwind CSS, and Fra
 2. **About Me** - Education, experience, and passion
 3. **Skills** - Categorized technical skills with animated progress bars
 4. **Experience** - Professional timeline with detailed descriptions
-5. **Projects** - Placeholder for future projects
+5. **Projects** - Showcase of technical projects including NFL Rushing Predictor
 6. **Certifications** - Professional certifications and achievements
 7. **Contact** - Contact form and social links
 
