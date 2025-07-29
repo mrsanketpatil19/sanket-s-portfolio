@@ -1,15 +1,15 @@
 {
   "files": {
     "main.css": "/sanket-s-portfolio/static/css/main.0669f79c.css",
-    "main.js": "/sanket-s-portfolio/static/js/main.d7003227.js",
+    "main.js": "/sanket-s-portfolio/static/js/main.0d02bea6.js",
     "static/media/figmd-values-award.png": "/sanket-s-portfolio/static/media/figmd-values-award.13adf71f34bae93bd3d9.png",
     "static/media/figmd-beyond-call-duty-award.png": "/sanket-s-portfolio/static/media/figmd-beyond-call-duty-award.eb2db02b218c8f9c4473.png",
     "index.html": "/sanket-s-portfolio/index.html",
     "main.0669f79c.css.map": "/sanket-s-portfolio/static/css/main.0669f79c.css.map",
-    "main.d7003227.js.map": "/sanket-s-portfolio/static/js/main.d7003227.js.map"
+    "main.0d02bea6.js.map": "/sanket-s-portfolio/static/js/main.0d02bea6.js.map"
   },
   "entrypoints": [
     "static/css/main.0669f79c.css",
-    "static/js/main.d7003227.js"
+    "static/js/main.0d02bea6.js"
   ]
 }
