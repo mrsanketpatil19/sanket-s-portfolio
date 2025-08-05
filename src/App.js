@@ -48,6 +48,7 @@ const GeometricShapes = () => {
 const Navigation = () => {
   const [isScrolled, setIsScrolled] = useState(false);
   const [activeSection, setActiveSection] = useState('home');
+  const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
 
   useEffect(() => {
     const handleScroll = () => {
@@ -72,6 +73,14 @@ const Navigation = () => {
 
   const navItems = ['Home', 'About', 'Skills', 'Experience', 'Projects', 'Certifications', 'Contact'];
 
+  const handleNavClick = (item) => {
+    setIsMobileMenuOpen(false);
+    const element = document.getElementById(item.toLowerCase());
+    if (element) {
+      element.scrollIntoView({ behavior: 'smooth' });
+    }
+  };
+
   return (
     <motion.nav
       className={`fixed top-0 left-0 right-0 z-40 transition-all duration-300 ${
@@ -90,6 +99,8 @@ const Navigation = () => {
           >
             <h1 className="text-2xl font-bold text-white">Sanket</h1>
           </motion.div>
+          
+          {/* Desktop Navigation */}
           <div className="hidden md:flex space-x-8">
             {navItems.map((item) => (
               <motion.a
@@ -103,7 +114,42 @@ const Navigation = () => {
               </motion.a>
             ))}
           </div>
+
+          {/* Mobile Menu Button */}
+          <motion.button
+            className="md:hidden w-8 h-8 flex flex-col justify-center items-center space-y-1"
+            onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}
+            whileTap={{ scale: 0.95 }}
+          >
+            <span className={`w-6 h-0.5 bg-white transition-all duration-300 ${isMobileMenuOpen ? 'rotate-45 translate-y-1.5' : ''}`}></span>
+            <span className={`w-6 h-0.5 bg-white transition-all duration-300 ${isMobileMenuOpen ? 'opacity-0' : ''}`}></span>
+            <span className={`w-6 h-0.5 bg-white transition-all duration-300 ${isMobileMenuOpen ? '-rotate-45 -translate-y-1.5' : ''}`}></span>
+          </motion.button>
         </div>
+
+        {/* Mobile Navigation Menu */}
+        <motion.div
+          className={`md:hidden overflow-hidden transition-all duration-300 ${
+            isMobileMenuOpen ? 'max-h-96 opacity-100' : 'max-h-0 opacity-0'
+          }`}
+        >
+          <div className="py-4 space-y-2">
+            {navItems.map((item) => (
+              <motion.a
+                key={item}
+                href={`#${item.toLowerCase()}`}
+                className={`block py-2 px-4 text-gray-300 hover:text-primary transition-colors duration-300 ${
+                  activeSection === item.toLowerCase() ? 'text-primary border-l-2 border-primary' : ''
+                }`}
+                onClick={() => handleNavClick(item)}
+                whileHover={{ x: 5 }}
+                whileTap={{ scale: 0.95 }}
+              >
+                {item}
+              </motion.a>
+            ))}
+          </div>
+        </motion.div>
       </div>
     </motion.nav>
   );
@@ -134,10 +180,10 @@ const Hero = () => {
             initial={{ opacity: 0, x: -50 }}
             animate={{ opacity: 1, x: 0 }}
             transition={{ duration: 0.8 }}
-            className="space-y-6"
+            className="space-y-6 text-center lg:text-left"
           >
             <motion.h1
-              className="text-5xl md:text-7xl font-bold text-white"
+              className="text-4xl sm:text-5xl md:text-6xl lg:text-7xl font-bold text-white leading-tight"
               initial={{ opacity: 0, y: 20 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.8, delay: 0.2 }}
@@ -147,7 +193,7 @@ const Hero = () => {
             </motion.h1>
             
             <motion.h2
-              className="text-2xl md:text-3xl font-semibold text-gray-300"
+              className="text-xl sm:text-2xl md:text-3xl font-semibold text-gray-300"
               initial={{ opacity: 0, y: 20 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.8, delay: 0.4 }}
@@ -157,7 +203,7 @@ const Hero = () => {
             </motion.h2>
             
             <motion.p
-              className="text-lg text-gray-400 leading-relaxed"
+              className="text-base sm:text-lg text-gray-400 leading-relaxed max-w-2xl mx-auto lg:mx-0"
               initial={{ opacity: 0, y: 20 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.8, delay: 0.6 }}
@@ -166,7 +212,7 @@ const Hero = () => {
             </motion.p>
             
             <motion.div
-              className="flex items-center space-x-2 text-lg text-gray-300"
+              className="flex items-center justify-center lg:justify-start space-x-2 text-base sm:text-lg text-gray-300"
               initial={{ opacity: 0, y: 20 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.8, delay: 0.8 }}
@@ -179,9 +225,9 @@ const Hero = () => {
               initial={{ opacity: 0, y: 20 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.8, delay: 1.0 }}
-              className="space-y-4"
+              className="space-y-4 flex flex-col sm:flex-row items-center justify-center lg:justify-start gap-4"
             >
-              <button className="btn-primary">
+              <button className="btn-primary w-full sm:w-auto">
                 Contact
               </button>
               
@@ -225,14 +271,14 @@ const Hero = () => {
             initial={{ opacity: 0, x: 50 }}
             animate={{ opacity: 1, x: 0 }}
             transition={{ duration: 0.8, delay: 0.4 }}
-            className="relative flex justify-center lg:justify-end"
+            className="relative flex justify-center lg:justify-end mt-8 lg:mt-0"
           >
             <div className="relative">
               <div className="absolute inset-0 bg-primary rounded-full transform rotate-12 scale-110 opacity-20 animate-glow"></div>
               <img
                 src={`${process.env.PUBLIC_URL}/work_experience/WhatsApp Image 2025-07-04 at 12.05.58.jpeg`}
                 alt="Sanket Patil"
-                className="relative w-80 h-80 md:w-96 md:h-96 rounded-full object-cover shadow-large border-4 border-primary/30"
+                className="relative w-64 h-64 sm:w-80 sm:h-80 md:w-96 md:h-96 rounded-full object-cover shadow-large border-4 border-primary/30"
               />
             </div>
           </motion.div>
@@ -262,41 +308,41 @@ const About = () => {
           <p className="section-subtitle">Passionate about turning data into meaningful insights</p>
         </motion.div>
         
-        <div className="grid lg:grid-cols-2 gap-12 items-center">
+        <div className="grid lg:grid-cols-2 gap-8 lg:gap-12 items-center">
           <motion.div
             initial={{ opacity: 0, x: -50 }}
             animate={inView ? { opacity: 1, x: 0 } : {}}
             transition={{ duration: 0.8, delay: 0.2 }}
-            className="space-y-6"
+            className="space-y-6 order-2 lg:order-1"
           >
-            <div className="card card-hover p-8">
+            <div className="card card-hover p-6 sm:p-8">
               <div className="flex items-center mb-4">
-                <FaGraduationCap className="text-primary text-2xl mr-3" />
-                <h3 className="text-2xl font-semibold text-white">Education</h3>
+                <FaGraduationCap className="text-primary text-xl sm:text-2xl mr-3" />
+                <h3 className="text-xl sm:text-2xl font-semibold text-white">Education</h3>
               </div>
-              <p className="text-gray-300 leading-relaxed">
+              <p className="text-gray-300 leading-relaxed text-sm sm:text-base">
                 Master's in Data Science at DePaul University (Sep 2023 - Jun 2025) with a GPA of 3.87. 
                 Focusing on advanced machine learning, deep learning, and AI systems development.
               </p>
             </div>
             
-            <div className="card card-hover p-8">
+            <div className="card card-hover p-6 sm:p-8">
               <div className="flex items-center mb-4">
-                <FaBriefcase className="text-primary text-2xl mr-3" />
-                <h3 className="text-2xl font-semibold text-white">Experience</h3>
+                <FaBriefcase className="text-primary text-xl sm:text-2xl mr-3" />
+                <h3 className="text-xl sm:text-2xl font-semibold text-white">Experience</h3>
               </div>
-              <p className="text-gray-300 leading-relaxed">
+              <p className="text-gray-300 leading-relaxed text-sm sm:text-base">
                 Previously worked as a Data Analyst at MRO Corp (Jan 2021 - Aug 2023), where I developed 
                 expertise in data analysis, visualization, and business intelligence solutions.
               </p>
             </div>
             
-            <div className="card card-hover p-8">
+            <div className="card card-hover p-6 sm:p-8">
               <div className="flex items-center mb-4">
-                <FaRocket className="text-primary text-2xl mr-3" />
-                <h3 className="text-2xl font-semibold text-white">Passion</h3>
+                <FaRocket className="text-primary text-xl sm:text-2xl mr-3" />
+                <h3 className="text-xl sm:text-2xl font-semibold text-white">Passion</h3>
               </div>
-              <p className="text-gray-300 leading-relaxed">
+              <p className="text-gray-300 leading-relaxed text-sm sm:text-base">
                 Passionate about Large Language Models (LLMs), Natural Language Processing (NLP), 
                 and Generative AI systems. Always exploring the latest developments in AI technology.
               </p>
@@ -307,15 +353,15 @@ const About = () => {
             initial={{ opacity: 0, x: 50 }}
             animate={inView ? { opacity: 1, x: 0 } : {}}
             transition={{ duration: 0.8, delay: 0.4 }}
-            className="relative"
+            className="relative order-1 lg:order-2"
           >
-            <div className="w-80 h-80 mx-auto relative">
+            <div className="w-64 h-64 sm:w-80 sm:h-80 mx-auto relative">
               <div className="absolute inset-0 bg-gradient-to-r from-primary to-accent rounded-full opacity-20 animate-glow"></div>
               <div className="absolute inset-4 bg-dark-card rounded-full flex items-center justify-center shadow-large border border-primary/30">
                 <div className="text-center">
-                  <div className="text-6xl mb-4">👨‍💻</div>
-                  <p className="text-xl font-semibold gradient-text">Data Scientist</p>
-                  <p className="text-gray-300">AI Engineer</p>
+                  <div className="text-4xl sm:text-6xl mb-4">👨‍💻</div>
+                  <p className="text-lg sm:text-xl font-semibold gradient-text">Data Scientist</p>
+                  <p className="text-gray-300 text-sm sm:text-base">AI Engineer</p>
                 </div>
               </div>
             </div>
@@ -394,24 +440,24 @@ const Skills = () => {
           <p className="section-subtitle">Technical expertise across data science and AI</p>
         </motion.div>
         
-        <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-8">
+        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6 lg:gap-8">
           {skillCategories.map((category, categoryIndex) => (
             <motion.div
               key={category.title}
               initial={{ opacity: 0, y: 50 }}
               animate={inView ? { opacity: 1, y: 0 } : {}}
               transition={{ duration: 0.8, delay: categoryIndex * 0.1 }}
-              className="card card-hover p-6"
+              className="card card-hover p-4 sm:p-6"
             >
-              <h3 className="text-xl font-semibold mb-6 text-primary">
+              <h3 className="text-lg sm:text-xl font-semibold mb-4 sm:mb-6 text-primary">
                 {category.title}
               </h3>
-              <div className="space-y-4">
+              <div className="space-y-3 sm:space-y-4">
                 {category.skills.map((skill, skillIndex) => (
                   <div key={skill.name} className="space-y-2">
                     <div className="flex items-center space-x-3">
-                      <skill.icon className="text-primary text-lg" />
-                      <span className="text-sm font-medium text-gray-300">{skill.name}</span>
+                      <skill.icon className="text-primary text-base sm:text-lg" />
+                      <span className="text-xs sm:text-sm font-medium text-gray-300">{skill.name}</span>
                     </div>
                     <div className="skill-bar">
                       <motion.div
@@ -437,8 +483,8 @@ const ProjectModal = ({ isOpen, onClose, project }) => {
   if (!isOpen) return null;
 
   return (
-    <div className="fixed inset-0 z-50 flex items-center justify-center bg-black bg-opacity-50 p-4" onClick={onClose}>
-      <div className="relative max-w-4xl max-h-[90vh] overflow-y-auto">
+    <div className="fixed inset-0 z-50 flex items-center justify-center bg-black bg-opacity-50 p-2 sm:p-4" onClick={onClose}>
+      <div className="relative w-full max-w-4xl max-h-[95vh] sm:max-h-[90vh] overflow-y-auto">
         <motion.div
           initial={{ scale: 0.5, opacity: 0 }}
           animate={{ scale: 1, opacity: 1 }}
@@ -452,26 +498,26 @@ const ProjectModal = ({ isOpen, onClose, project }) => {
           >
             ×
           </button>
-          <div className="card p-8">
+          <div className="card p-4 sm:p-6 lg:p-8">
             {/* Project Header */}
-            <div className="mb-8">
+            <div className="mb-6 sm:mb-8">
               <div className="flex items-center mb-4">
-                <div className="text-3xl mr-3">{project.emoji}</div>
-                <h3 className="text-3xl font-bold text-white">{project.title}</h3>
+                <div className="text-2xl sm:text-3xl mr-3">{project.emoji}</div>
+                <h3 className="text-xl sm:text-2xl lg:text-3xl font-bold text-white">{project.title}</h3>
               </div>
-              <div className="flex flex-wrap items-center gap-4 mb-4">
-                <span className="text-primary font-semibold">{project.date}</span>
+              <div className="flex flex-wrap items-center gap-2 sm:gap-4 mb-4">
+                <span className="text-primary font-semibold text-sm sm:text-base">{project.date}</span>
                 <span className="text-gray-400">•</span>
-                <span className="text-gray-300 text-sm">{project.technologies}</span>
+                <span className="text-gray-300 text-xs sm:text-sm">{project.technologies}</span>
               </div>
-              <p className="text-lg text-gray-300 leading-relaxed mb-6">{project.description}</p>
+              <p className="text-sm sm:text-base lg:text-lg text-gray-300 leading-relaxed mb-4 sm:mb-6">{project.description}</p>
               {project.deployedLink && (
-                <div className="mb-6">
+                <div className="mb-4 sm:mb-6">
                   <a
                     href={project.deployedLink}
                     target="_blank"
                     rel="noopener noreferrer"
-                    className="inline-flex items-center space-x-2 px-4 py-2 bg-primary text-white rounded-lg hover:bg-secondary transition-colors duration-300"
+                    className="inline-flex items-center space-x-2 px-3 sm:px-4 py-2 bg-primary text-white rounded-lg hover:bg-secondary transition-colors duration-300 text-sm sm:text-base"
                   >
                     <span>🌐</span>
                     <span>View Live Demo</span>
@@ -481,53 +527,53 @@ const ProjectModal = ({ isOpen, onClose, project }) => {
             </div>
 
             {/* Project Image */}
-            <div className="mb-8">
+            <div className="mb-6 sm:mb-8">
               <img
                 src={project.image}
                 alt={project.title}
-                className="w-full h-64 object-cover rounded-lg shadow-medium"
+                className="w-full h-48 sm:h-64 object-cover rounded-lg shadow-medium"
               />
             </div>
 
             {/* Problem Statement */}
-            <div className="mb-8">
-              <h4 className="text-2xl font-bold text-primary mb-4">🔧 Problem</h4>
-              <p className="text-gray-300 leading-relaxed">{project.problem}</p>
+            <div className="mb-6 sm:mb-8">
+              <h4 className="text-lg sm:text-xl lg:text-2xl font-bold text-primary mb-3 sm:mb-4">🔧 Problem</h4>
+              <p className="text-sm sm:text-base text-gray-300 leading-relaxed">{project.problem}</p>
             </div>
 
             {/* What I Built */}
-            <div className="mb-8">
-              <h4 className="text-2xl font-bold text-primary mb-6">🏗️ What I Built</h4>
-              <div className="grid md:grid-cols-2 gap-6">
+            <div className="mb-6 sm:mb-8">
+              <h4 className="text-lg sm:text-xl lg:text-2xl font-bold text-primary mb-4 sm:mb-6">🏗️ What I Built</h4>
+              <div className="grid grid-cols-1 lg:grid-cols-2 gap-4 sm:gap-6">
                 {project.features.map((feature, index) => (
                   <div
                     key={index}
-                    className="bg-dark-bg p-6 rounded-lg border border-gray-700"
+                    className="bg-dark-bg p-4 sm:p-6 rounded-lg border border-gray-700"
                   >
-                    <h5 className="text-lg font-semibold text-white mb-3">{feature.title}</h5>
-                    <p className="text-gray-300 text-sm leading-relaxed">{feature.description}</p>
+                    <h5 className="text-base sm:text-lg font-semibold text-white mb-2 sm:mb-3">{feature.title}</h5>
+                    <p className="text-xs sm:text-sm text-gray-300 leading-relaxed">{feature.description}</p>
                   </div>
                 ))}
               </div>
             </div>
 
             {/* Performance & Optimization */}
-            <div className="mb-8">
-              <h4 className="text-2xl font-bold text-primary mb-4">⚙️ Performance & Optimization</h4>
+            <div className="mb-6 sm:mb-8">
+              <h4 className="text-lg sm:text-xl lg:text-2xl font-bold text-primary mb-3 sm:mb-4">⚙️ Performance & Optimization</h4>
               <ul className="space-y-2">
                 {project.optimizations.map((opt, index) => (
                   <li key={index} className="flex items-start">
                     <span className="text-primary mr-2">•</span>
-                    <span className="text-gray-300">{opt}</span>
+                    <span className="text-xs sm:text-sm text-gray-300">{opt}</span>
                   </li>
                 ))}
               </ul>
             </div>
 
             {/* Impact */}
-            <div className="border-t border-gray-700 pt-6">
-              <h4 className="text-2xl font-bold text-primary mb-4">🎯 Impact</h4>
-              <p className="text-gray-300 leading-relaxed">{project.impact}</p>
+            <div className="border-t border-gray-700 pt-4 sm:pt-6">
+              <h4 className="text-lg sm:text-xl lg:text-2xl font-bold text-primary mb-3 sm:mb-4">🎯 Impact</h4>
+              <p className="text-sm sm:text-base text-gray-300 leading-relaxed">{project.impact}</p>
             </div>
           </div>
         </motion.div>
@@ -772,8 +818,8 @@ const Projects = () => {
         </motion.div>
         
         <div className="relative max-w-6xl mx-auto">
-          {/* Navigation Arrows */}
-          <div className="flex justify-between items-center mb-8">
+          {/* Navigation Arrows - Hidden on mobile */}
+          <div className="hidden md:flex justify-between items-center mb-8">
             <motion.button
               className="w-12 h-12 bg-dark-card border border-gray-700 rounded-full flex items-center justify-center text-white hover:bg-primary hover:border-primary transition-all duration-300"
               whileHover={{ scale: 1.1 }}
@@ -805,7 +851,7 @@ const Projects = () => {
           {/* Scrollable Projects Container */}
           <div 
             id="projects-scroll"
-            className="flex gap-6 overflow-x-auto scrollbar-hide pb-4"
+            className="flex gap-4 sm:gap-6 overflow-x-auto scrollbar-hide pb-4 px-4 sm:px-0"
             style={{ scrollBehavior: 'smooth' }}
           >
             {projects.map((project, index) => (
@@ -814,7 +860,7 @@ const Projects = () => {
                 initial={{ opacity: 0, x: 50 }}
                 animate={inView ? { opacity: 1, x: 0 } : {}}
                 transition={{ duration: 0.8, delay: index * 0.1 }}
-                className="card project-card-hover p-6 cursor-pointer border border-gray-700 flex-shrink-0 w-80 bg-dark-card"
+                className="card project-card-hover p-4 sm:p-6 cursor-pointer border border-gray-700 flex-shrink-0 w-72 sm:w-80 bg-dark-card"
                 onClick={() => openModal(project)}
               >
                 {/* Project Image */}
@@ -823,29 +869,29 @@ const Projects = () => {
                     <img
                       src={project.image}
                       alt={project.title}
-                      className="w-full h-48 object-cover shadow-medium transition-transform duration-500 hover:scale-110"
+                      className="w-full h-40 sm:h-48 object-cover shadow-medium transition-transform duration-500 hover:scale-110"
                     />
                     <div className="absolute inset-0 bg-gradient-to-t from-black/50 to-transparent opacity-0 hover:opacity-100 transition-opacity duration-300"></div>
                   </div>
-                  <div className="absolute -top-2 -right-2 w-10 h-10 bg-primary rounded-full flex items-center justify-center text-white text-lg border-2 border-dark-card shadow-glow transition-all duration-300 hover:scale-110 hover:shadow-glow">
+                  <div className="absolute -top-2 -right-2 w-8 h-8 sm:w-10 sm:h-10 bg-primary rounded-full flex items-center justify-center text-white text-sm sm:text-lg border-2 border-dark-card shadow-glow transition-all duration-300 hover:scale-110 hover:shadow-glow">
                     {project.emoji}
                   </div>
                 </div>
                 
                 {/* Project Content */}
                 <div className="space-y-3">
-                  <h3 className="text-xl font-bold text-white transition-colors duration-300 hover:text-primary">
+                  <h3 className="text-lg sm:text-xl font-bold text-white transition-colors duration-300 hover:text-primary line-clamp-2">
                     {project.title}
                   </h3>
                   <div className="flex items-center gap-2">
-                    <span className="text-primary font-semibold text-sm">{project.date}</span>
+                    <span className="text-primary font-semibold text-xs sm:text-sm">{project.date}</span>
                     <span className="text-gray-400">•</span>
-                    <span className="text-gray-300 text-xs font-medium">{project.technologies}</span>
+                    <span className="text-gray-300 text-xs font-medium line-clamp-1">{project.technologies}</span>
                   </div>
-                  <p className="text-gray-300 leading-relaxed text-sm line-clamp-3">{project.description}</p>
+                  <p className="text-gray-300 leading-relaxed text-xs sm:text-sm line-clamp-3">{project.description}</p>
                   <div className="flex items-center justify-between">
-                    <div className="inline-flex items-center space-x-2 px-3 py-1.5 bg-primary bg-opacity-10 rounded-full border border-primary transition-all duration-300 hover:bg-primary hover:text-white group">
-                      <span className="text-primary font-semibold text-sm group-hover:text-white transition-colors">Click to explore</span>
+                    <div className="inline-flex items-center space-x-2 px-2 sm:px-3 py-1 sm:py-1.5 bg-primary bg-opacity-10 rounded-full border border-primary transition-all duration-300 hover:bg-primary hover:text-white group">
+                      <span className="text-primary font-semibold text-xs sm:text-sm group-hover:text-white transition-colors">Click to explore</span>
                       <span className="text-primary group-hover:text-white transition-colors group-hover:translate-x-1">→</span>
                     </div>
                     {project.deployedLink && (
@@ -876,8 +922,8 @@ const CertificateModal = ({ isOpen, onClose, certificate }) => {
   if (!isOpen) return null;
 
   return (
-    <div className="fixed inset-0 z-50 flex items-center justify-center bg-black bg-opacity-50 p-4" onClick={onClose}>
-      <div className="relative max-w-4xl max-h-[90vh] p-4">
+    <div className="fixed inset-0 z-50 flex items-center justify-center bg-black bg-opacity-50 p-2 sm:p-4" onClick={onClose}>
+      <div className="relative w-full max-w-4xl max-h-[95vh] sm:max-h-[90vh] p-2 sm:p-4">
         <motion.div
           initial={{ scale: 0.5, opacity: 0 }}
           animate={{ scale: 1, opacity: 1 }}
@@ -891,7 +937,7 @@ const CertificateModal = ({ isOpen, onClose, certificate }) => {
           >
             ×
           </button>
-          <div className="card p-4">
+          <div className="card p-3 sm:p-4">
             {certificate?.image ? (
               <img
                 src={certificate.image}
@@ -899,18 +945,18 @@ const CertificateModal = ({ isOpen, onClose, certificate }) => {
                 className="w-full h-auto rounded-lg shadow-medium"
               />
             ) : (
-              <div className="w-full h-96 bg-dark-bg rounded-lg flex items-center justify-center">
+              <div className="w-full h-64 sm:h-96 bg-dark-bg rounded-lg flex items-center justify-center">
                 <div className="text-center">
-                  <certificate.icon className="text-6xl text-primary mx-auto mb-4" />
-                  <h3 className="text-2xl font-bold mb-2 text-white">{certificate.title}</h3>
-                  <p className="text-primary text-lg font-semibold mb-4">{certificate.issuer}</p>
-                  <p className="text-gray-400">Certificate image will be displayed here</p>
+                  <certificate.icon className="text-4xl sm:text-6xl text-primary mx-auto mb-4" />
+                  <h3 className="text-xl sm:text-2xl font-bold mb-2 text-white">{certificate.title}</h3>
+                  <p className="text-primary text-base sm:text-lg font-semibold mb-4">{certificate.issuer}</p>
+                  <p className="text-gray-400 text-sm sm:text-base">Certificate image will be displayed here</p>
                 </div>
               </div>
             )}
             <div className="mt-4 text-center">
-              <h3 className="text-xl font-bold text-white mb-2">{certificate.title}</h3>
-              <p className="text-primary font-semibold">{certificate.issuer}</p>
+              <h3 className="text-lg sm:text-xl font-bold text-white mb-2">{certificate.title}</h3>
+              <p className="text-primary font-semibold text-sm sm:text-base">{certificate.issuer}</p>
             </div>
           </div>
         </motion.div>
@@ -924,8 +970,8 @@ const AwardModal = ({ isOpen, onClose, award }) => {
   if (!isOpen) return null;
 
   return (
-    <div className="fixed inset-0 z-50 flex items-center justify-center bg-black bg-opacity-50 p-4" onClick={onClose}>
-      <div className="relative max-w-4xl max-h-[90vh] p-4">
+    <div className="fixed inset-0 z-50 flex items-center justify-center bg-black bg-opacity-50 p-2 sm:p-4" onClick={onClose}>
+      <div className="relative w-full max-w-4xl max-h-[95vh] sm:max-h-[90vh] p-2 sm:p-4">
         <motion.div
           initial={{ scale: 0.5, opacity: 0 }}
           animate={{ scale: 1, opacity: 1 }}
@@ -939,7 +985,7 @@ const AwardModal = ({ isOpen, onClose, award }) => {
           >
             ×
           </button>
-          <div className="card p-4">
+          <div className="card p-3 sm:p-4">
             {award?.image ? (
               <img
                 src={award.image}
@@ -947,17 +993,17 @@ const AwardModal = ({ isOpen, onClose, award }) => {
                 className="w-full h-auto rounded-lg shadow-medium"
               />
             ) : (
-              <div className="w-full h-96 bg-dark-bg rounded-lg flex items-center justify-center border border-gray-700">
+              <div className="w-full h-64 sm:h-96 bg-dark-bg rounded-lg flex items-center justify-center border border-gray-700">
                 <div className="text-center">
-                  <FaAward className="text-6xl text-primary mx-auto mb-4" />
-                  <h3 className="text-2xl font-bold mb-2 text-white">{award.awardName}</h3>
-                  <p className="text-gray-400">Award image will be displayed here</p>
+                  <FaAward className="text-4xl sm:text-6xl text-primary mx-auto mb-4" />
+                  <h3 className="text-xl sm:text-2xl font-bold mb-2 text-white">{award.awardName}</h3>
+                  <p className="text-gray-400 text-sm sm:text-base">Award image will be displayed here</p>
                 </div>
               </div>
             )}
             <div className="mt-4 text-center">
-              <h3 className="text-xl font-bold text-white mb-2">{award.awardName}</h3>
-              <p className="text-gray-300">{award.text}{award.afterText}</p>
+              <h3 className="text-lg sm:text-xl font-bold text-white mb-2">{award.awardName}</h3>
+              <p className="text-gray-300 text-sm sm:text-base">{award.text}{award.afterText}</p>
             </div>
           </div>
         </motion.div>
@@ -1066,7 +1112,7 @@ const Experience = () => {
         
         <div className="max-w-4xl mx-auto">
           <div className="relative">
-            <div className="absolute left-8 top-0 bottom-0 w-0.5 bg-gradient-to-b from-primary to-accent"></div>
+            <div className="absolute left-4 sm:left-8 top-0 bottom-0 w-0.5 bg-gradient-to-b from-primary to-accent"></div>
             
             {experiences.map((exp, index) => (
               <motion.div
@@ -1074,29 +1120,29 @@ const Experience = () => {
                 initial={{ opacity: 0, x: -50 }}
                 animate={inView ? { opacity: 1, x: 0 } : {}}
                 transition={{ duration: 0.8, delay: index * 0.2 }}
-                className="relative pl-20 pb-12"
+                className="relative pl-12 sm:pl-20 pb-8 sm:pb-12"
               >
-                <div className="absolute left-6 w-4 h-4 bg-primary rounded-full border-4 border-white shadow-medium"></div>
+                <div className="absolute left-2 sm:left-6 w-3 h-3 sm:w-4 sm:h-4 bg-primary rounded-full border-2 sm:border-4 border-white shadow-medium"></div>
                 
-                <div className="card card-hover p-8">
+                <div className="card card-hover p-4 sm:p-6 lg:p-8">
                   <div className="flex flex-col md:flex-row md:items-center md:justify-between mb-4">
                     <div>
-                      <h3 className="text-2xl font-bold text-primary">{exp.title}</h3>
-                      <p className="text-xl text-gray-300">{exp.company}</p>
-                      <p className="text-gray-400 flex items-center mt-2">
+                      <h3 className="text-xl sm:text-2xl font-bold text-primary">{exp.title}</h3>
+                      <p className="text-lg sm:text-xl text-gray-300">{exp.company}</p>
+                      <p className="text-gray-400 flex items-center mt-2 text-sm sm:text-base">
                         <FaMapMarkerAlt className="mr-2" />
                         {exp.location}
                       </p>
                     </div>
-                    <div className="text-primary font-semibold mt-2 md:mt-0">
+                    <div className="text-primary font-semibold mt-2 md:mt-0 text-sm sm:text-base">
                       {exp.duration}
                     </div>
                   </div>
-                  <p className="text-gray-300 leading-relaxed mb-4">{exp.description}</p>
+                  <p className="text-gray-300 leading-relaxed mb-4 text-sm sm:text-base">{exp.description}</p>
                   
                   {exp.project && (
                     <div className="mb-4">
-                      <h4 className="text-lg font-semibold text-primary mb-2">📚 {exp.project}</h4>
+                      <h4 className="text-base sm:text-lg font-semibold text-primary mb-2">📚 {exp.project}</h4>
                     </div>
                   )}
                   
@@ -1104,19 +1150,19 @@ const Experience = () => {
                     {exp.details?.slice(0, 3).map((detail, index) => (
                       <div key={index} className="flex items-start space-x-3">
                         <div className="w-2 h-2 bg-primary rounded-full mt-2 flex-shrink-0"></div>
-                        <p className="text-gray-300 leading-relaxed text-sm">{detail}</p>
+                        <p className="text-gray-300 leading-relaxed text-xs sm:text-sm">{detail}</p>
                       </div>
                     ))}
                   </div>
                   
                   {exp.achievements && (
-                    <div className="mt-6 p-4 bg-dark-bg rounded-lg border border-gray-700">
-                      <h4 className="text-lg font-semibold text-primary mb-3">🏆 Key Achievements</h4>
+                    <div className="mt-4 sm:mt-6 p-3 sm:p-4 bg-dark-bg rounded-lg border border-gray-700">
+                      <h4 className="text-base sm:text-lg font-semibold text-primary mb-3">🏆 Key Achievements</h4>
                       <div className="space-y-2">
                         {exp.achievements.map((achievement, index) => (
                           <div key={index} className="flex items-start space-x-3">
                             <div className="w-2 h-2 bg-primary rounded-full mt-2 flex-shrink-0"></div>
-                            <p className="text-gray-300 text-sm">
+                            <p className="text-gray-300 text-xs sm:text-sm">
                               {achievement.text}
                               {achievement.hasImage ? (
                                 <span 
@@ -1206,21 +1252,21 @@ const Certifications = () => {
           <p className="section-subtitle">Professional certifications and achievements</p>
         </motion.div>
         
-        <div className="grid md:grid-cols-2 gap-8 max-w-4xl mx-auto">
+        <div className="grid grid-cols-1 sm:grid-cols-2 gap-6 sm:gap-8 max-w-4xl mx-auto">
           {certifications.map((cert, index) => (
             <motion.div
               key={index}
               initial={{ opacity: 0, y: 50 }}
               animate={inView ? { opacity: 1, y: 0 } : {}}
               transition={{ duration: 0.8, delay: index * 0.2 }}
-              className="card card-hover p-8 text-center cursor-pointer"
+              className="card card-hover p-6 sm:p-8 text-center cursor-pointer"
               onClick={() => openModal(cert)}
             >
-              <cert.icon className="text-6xl text-primary mx-auto mb-4" />
-              <h3 className="text-2xl font-bold mb-2 text-white">{cert.title}</h3>
-              <p className="text-primary text-lg font-semibold mb-4">{cert.issuer}</p>
-              <FaAward className="text-primary text-2xl mx-auto mb-2" />
-              <p className="text-sm text-gray-400 mt-2">Click to view certificate</p>
+              <cert.icon className="text-4xl sm:text-6xl text-primary mx-auto mb-4" />
+              <h3 className="text-xl sm:text-2xl font-bold mb-2 text-white">{cert.title}</h3>
+              <p className="text-primary text-base sm:text-lg font-semibold mb-4">{cert.issuer}</p>
+              <FaAward className="text-primary text-xl sm:text-2xl mx-auto mb-2" />
+              <p className="text-xs sm:text-sm text-gray-400 mt-2">Click to view certificate</p>
             </motion.div>
           ))}
         </div>
@@ -1275,48 +1321,48 @@ const Contact = () => {
           <p className="section-subtitle">Let's discuss opportunities and collaborations</p>
         </motion.div>
         
-        <div className="grid lg:grid-cols-2 gap-12 max-w-6xl mx-auto">
+        <div className="grid lg:grid-cols-2 gap-8 lg:gap-12 max-w-6xl mx-auto">
           <motion.div
             initial={{ opacity: 0, x: -50 }}
             animate={inView ? { opacity: 1, x: 0 } : {}}
             transition={{ duration: 0.8, delay: 0.2 }}
-            className="space-y-8"
+            className="space-y-6 lg:space-y-8 order-2 lg:order-1"
           >
-            <div className="card card-hover p-8">
-              <h3 className="text-2xl font-bold mb-6 text-white">Let's Connect</h3>
-              <div className="space-y-6">
-                <div className="flex items-center space-x-4">
-                  <FaEnvelope className="text-primary text-2xl" />
+            <div className="card card-hover p-6 sm:p-8">
+              <h3 className="text-xl sm:text-2xl font-bold mb-4 sm:mb-6 text-white">Let's Connect</h3>
+              <div className="space-y-4 sm:space-y-6">
+                <div className="flex items-center space-x-3 sm:space-x-4">
+                  <FaEnvelope className="text-primary text-xl sm:text-2xl" />
                   <div>
-                    <p className="text-gray-400">Email</p>
-                    <p className="text-lg text-white">sanketpraveenpatil@gmail.com</p>
+                    <p className="text-gray-400 text-sm sm:text-base">Email</p>
+                    <p className="text-base sm:text-lg text-white break-all">sanketpraveenpatil@gmail.com</p>
                   </div>
                 </div>
-                <div className="flex items-center space-x-4">
-                  <FaPhone className="text-primary text-2xl" />
+                <div className="flex items-center space-x-3 sm:space-x-4">
+                  <FaPhone className="text-primary text-xl sm:text-2xl" />
                   <div>
-                    <p className="text-gray-400">Phone</p>
-                    <p className="text-lg text-white">464-300-9543</p>
+                    <p className="text-gray-400 text-sm sm:text-base">Phone</p>
+                    <p className="text-base sm:text-lg text-white">464-300-9543</p>
                   </div>
                 </div>
-                <div className="flex items-center space-x-4">
-                  <FaMapMarkerAlt className="text-primary text-2xl" />
+                <div className="flex items-center space-x-3 sm:space-x-4">
+                  <FaMapMarkerAlt className="text-primary text-xl sm:text-2xl" />
                   <div>
-                    <p className="text-gray-400">Location</p>
-                    <p className="text-lg text-white">Chicago, IL</p>
+                    <p className="text-gray-400 text-sm sm:text-base">Location</p>
+                    <p className="text-base sm:text-lg text-white">Chicago, IL</p>
                   </div>
                 </div>
               </div>
             </div>
             
-            <div className="card card-hover p-8">
-              <h3 className="text-2xl font-bold mb-6 text-white">Social Links</h3>
-              <div className="flex space-x-6">
+            <div className="card card-hover p-6 sm:p-8">
+              <h3 className="text-xl sm:text-2xl font-bold mb-4 sm:mb-6 text-white">Social Links</h3>
+              <div className="flex space-x-4 sm:space-x-6">
                 <motion.a
                   href="https://github.com/mrsanketpatil19"
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="social-link text-2xl"
+                  className="social-link text-xl sm:text-2xl"
                   whileHover={{ scale: 1.1 }}
                   whileTap={{ scale: 0.9 }}
                 >
@@ -1326,7 +1372,7 @@ const Contact = () => {
                   href="https://www.linkedin.com/in/sanket-patil-844281190/"
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="social-link text-2xl"
+                  className="social-link text-xl sm:text-2xl"
                   whileHover={{ scale: 1.1 }}
                   whileTap={{ scale: 0.9 }}
                 >
@@ -1336,7 +1382,7 @@ const Contact = () => {
                   href="https://leetcode.com/u/sanketpraveenpatil/"
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="social-link text-2xl"
+                  className="social-link text-xl sm:text-2xl"
                   whileHover={{ scale: 1.1 }}
                   whileTap={{ scale: 0.9 }}
                 >
@@ -1350,10 +1396,11 @@ const Contact = () => {
             initial={{ opacity: 0, x: 50 }}
             animate={inView ? { opacity: 1, x: 0 } : {}}
             transition={{ duration: 0.8, delay: 0.4 }}
+            className="order-1 lg:order-2"
           >
-            <form onSubmit={handleSubmit} className="card card-hover p-8">
-              <h3 className="text-2xl font-bold mb-6 text-white">Send Message</h3>
-              <div className="space-y-6">
+            <form onSubmit={handleSubmit} className="card card-hover p-6 sm:p-8">
+              <h3 className="text-xl sm:text-2xl font-bold mb-4 sm:mb-6 text-white">Send Message</h3>
+              <div className="space-y-4 sm:space-y-6">
                 <div>
                   <label htmlFor="name" className="block text-sm font-medium mb-2 text-gray-300">
                     Your Name
@@ -1394,7 +1441,7 @@ const Contact = () => {
                     value={formData.message}
                     onChange={handleChange}
                     required
-                    rows={5}
+                    rows={4}
                     className="form-textarea"
                     placeholder="Enter your message"
                   ></textarea>
