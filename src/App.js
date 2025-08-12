@@ -791,7 +791,8 @@ const Projects = () => {
       ],
       impact: "Delivered a high-accuracy property pricing model ready for integration with real estate platforms or valuation tools. Made the model interpretable by tracking top predictive features (e.g., location, size, year). Showcased the ability to build scalable ML pipelines for noisy, real-world tabular data. Demonstrated proficiency in model selection, tuning, and deployment preparation for predictive analytics.",
       image: `${process.env.PUBLIC_URL}/work_experience/ChatGPT Image Jul 4, 2025, 07_07_31 PM.png`,
-      emoji: "🏘️"
+      emoji: "🏘️",
+      deployedLink: "https://web-production-5ebe7.up.railway.app/"
     }
   ];
 
