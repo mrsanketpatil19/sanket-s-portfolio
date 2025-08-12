@@ -697,7 +697,8 @@ const Projects = () => {
       ],
       impact: "Enabled querying over 3,000+ embeddings and 15+ data sources with a unified natural language interface. Showcased potential for enterprise use cases like healthcare record QA, compliance document search, and multi-department business intelligence.",
       image: `${process.env.PUBLIC_URL}/work_experience/LLM_MultiDB_Chatbot.png`,
-      emoji: "🧠"
+      emoji: "🧠",
+      deployedLink: "https://llm-based-multi-database-chatbot-system.onrender.com/"
     },
     {
       id: 4,
